@@ -1,14 +1,23 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from '@/hooks/useInView';
 import { 
   Mail, MapPin, Calendar, Linkedin, Twitter, Instagram, 
-  Send, Loader2, ExternalLink, MessageSquare 
+  Send, Loader2, MessageSquare 
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
+import { supabase } from '@/integrations/supabase/client';
+
+declare global {
+  interface Window {
+    Calendly?: {
+      initPopupWidget: (options: { url: string }) => void;
+    };
+  }
+}
 
 const socialLinks = [
   { 
@@ -47,6 +56,32 @@ export const Contact = () => {
   });
   const { toast } = useToast();
 
+  // Load Calendly script
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://assets.calendly.com/assets/external/widget.js';
+    script.async = true;
+    document.body.appendChild(script);
+
+    const link = document.createElement('link');
+    link.href = 'https://assets.calendly.com/assets/external/widget.css';
+    link.rel = 'stylesheet';
+    document.head.appendChild(link);
+
+    return () => {
+      document.body.removeChild(script);
+      document.head.removeChild(link);
+    };
+  }, []);
+
+  const openCalendly = () => {
+    if (window.Calendly) {
+      window.Calendly.initPopupWidget({
+        url: 'https://calendly.com/contact-aribairfan0801'
+      });
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
@@ -61,16 +96,34 @@ export const Contact = () => {
 
     setIsLoading(true);
     
-    // Simulate API call - will be replaced with actual backend
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    setIsLoading(false);
-    setFormData({ name: '', email: '', subject: '', message: '' });
-    
-    toast({
-      title: "Message sent! 🚀",
-      description: "Thank you for reaching out. I'll get back to you soon.",
-    });
+    try {
+      const { error } = await supabase
+        .from('contact_submissions')
+        .insert({
+          name: formData.name.trim(),
+          email: formData.email.trim().toLowerCase(),
+          subject: formData.subject.trim() || null,
+          message: formData.message.trim(),
+        });
+
+      if (error) throw error;
+
+      setFormData({ name: '', email: '', subject: '', message: '' });
+      
+      toast({
+        title: "Message sent! 🚀",
+        description: "Thank you for reaching out. I'll get back to you soon.",
+      });
+    } catch (error) {
+      console.error('Contact form error:', error);
+      toast({
+        title: "Something went wrong",
+        description: "Please try again later.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -165,13 +218,11 @@ export const Contact = () => {
                   Want to discuss a collaboration or just chat about AI and startups?
                 </p>
                 <Button
-                  asChild
+                  onClick={openCalendly}
                   className="w-full bg-gradient-to-r from-primary to-secondary hover:opacity-90"
                 >
-                  <a href="https://calendly.com/contact-aribairfan0801" target="_blank" rel="noopener noreferrer">
-                    Schedule a Call
-                    <ExternalLink className="w-4 h-4 ml-2" />
-                  </a>
+                  Schedule a Call
+                  <Calendar className="w-4 h-4 ml-2" />
                 </Button>
               </div>
             </div>

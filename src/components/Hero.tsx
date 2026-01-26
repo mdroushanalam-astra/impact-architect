@@ -3,6 +3,14 @@ import { ChevronDown, Linkedin, Twitter, Instagram, Github, ArrowRight } from 'l
 import { Button } from '@/components/ui/button';
 import aribaImage from '@/assets/ariba.jpg';
 
+declare global {
+  interface Window {
+    Calendly?: {
+      initPopupWidget: (options: { url: string }) => void;
+    };
+  }
+}
+
 const socialLinks = [
   { icon: Linkedin, href: 'https://www.linkedin.com/in/ariba-irfan-483254374', label: 'LinkedIn' },
   { icon: Twitter, href: 'https://x.com/connect_aarzoo', label: 'Twitter' },
@@ -99,14 +107,20 @@ export const Hero = () => {
               className="flex flex-col sm:flex-row gap-4 mb-10"
             >
               <Button
-                asChild
+                onClick={() => {
+                  if (window.Calendly) {
+                    window.Calendly.initPopupWidget({
+                      url: 'https://calendly.com/contact-aribairfan0801'
+                    });
+                  } else {
+                    window.open('https://calendly.com/contact-aribairfan0801', '_blank');
+                  }
+                }}
                 size="lg"
                 className="bg-white text-primary hover:bg-white/90 font-semibold px-8 py-6 text-lg rounded-full shadow-xl group"
               >
-                <a href="https://calendly.com/contact-aribairfan0801" target="_blank" rel="noopener noreferrer">
-                  Book a Meeting
-                  <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
-                </a>
+                Book a Meeting
+                <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
               </Button>
               <Button
                 onClick={scrollToVentures}

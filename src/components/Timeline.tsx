@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from '@/hooks/useInView';
-import { useState, useEffect, useCallback, useMemo } from 'react';
-import { GraduationCap, BookOpen, Rocket } from 'lucide-react';
+import { useState, useEffect, useCallback } from 'react';
+import { BookOpen, Rocket, ArrowRight } from 'lucide-react';
 import techgramLogo from '@/assets/techgram-logo.png';
 import gigloLogo from '@/assets/giglo-logo.png';
 import indoverseLogo from '@/assets/indoverse-logo.png';
@@ -9,63 +9,6 @@ import photo1 from '@/assets/photo1.jpg';
 import photo2 from '@/assets/photo2.jpg';
 import photo3 from '@/assets/photo3.jpg';
 import photo4 from '@/assets/photo4.jpg';
-
-// Steam particle component
-const SteamParticle = ({ delay, isAnimating }: { delay: number; isAnimating: boolean }) => {
-  const randomX = useMemo(() => Math.random() * 20 - 10, []);
-  const randomSize = useMemo(() => Math.random() * 6 + 4, []);
-  
-  return (
-    <motion.div
-      className="absolute rounded-full bg-primary/40"
-      style={{
-        width: randomSize,
-        height: randomSize,
-        left: '50%',
-        top: '-8px',
-      }}
-      initial={{ opacity: 0, y: 0, x: 0, scale: 0.5 }}
-      animate={isAnimating ? {
-        opacity: [0, 0.8, 0.6, 0],
-        y: [-5, -20, -35, -50],
-        x: [0, randomX, randomX * 1.5, randomX * 2],
-        scale: [0.5, 1, 1.2, 0.8],
-      } : { opacity: 0 }}
-      transition={{
-        duration: 1.2,
-        delay: delay,
-        repeat: isAnimating ? Infinity : 0,
-        repeatDelay: 0.3,
-        ease: 'easeOut',
-      }}
-    />
-  );
-};
-
-// Wheel component
-const Wheel = ({ size, position, isMoving }: { size: number; position: 'left' | 'right'; isMoving: boolean }) => (
-  <motion.div
-    className="absolute bottom-0 bg-foreground rounded-full border-2 border-primary flex items-center justify-center"
-    style={{
-      width: size,
-      height: size,
-      [position]: position === 'left' ? -2 : -2,
-      transform: 'translateY(40%)',
-    }}
-    animate={isMoving ? { rotate: 360 } : { rotate: 0 }}
-    transition={{
-      duration: 0.5,
-      repeat: isMoving ? Infinity : 0,
-      ease: 'linear',
-    }}
-  >
-    {/* Wheel spokes */}
-    <div className="absolute w-full h-0.5 bg-primary/60" />
-    <div className="absolute w-0.5 h-full bg-primary/60" />
-    <div className="absolute w-full h-0.5 bg-primary/60 rotate-45" />
-    <div className="absolute w-0.5 h-full bg-primary/60 rotate-45" />
-  </motion.div>
-);
 
 const timelineEvents = [
   {
@@ -77,7 +20,7 @@ const timelineEvents = [
     type: 'milestone',
   },
   {
-    year: 'Nov 2024',
+    year: 'Nov 2025',
     title: 'Founded Techgram',
     description: 'Launched the AI-Powered Metaverse of Learning to democratize education for 2B+ underserved learners globally.',
     logo: techgramLogo,
@@ -227,7 +170,7 @@ export const Timeline = () => {
             ))}
           </div>
 
-          {/* Locomotive Train Indicator */}
+          {/* Professional Progress Indicator */}
           <motion.div
             className="absolute top-1/2 transform -translate-y-1/2 z-20"
             animate={{
@@ -239,73 +182,53 @@ export const Timeline = () => {
               ease: [0.4, 0, 0.2, 1],
             }}
           >
-            {/* Steam Particles */}
-            <div className="absolute -top-2 left-1/2 transform -translate-x-1/2">
-              {[0, 0.2, 0.4, 0.6, 0.8].map((delay, i) => (
-                <SteamParticle key={i} delay={delay} isAnimating={isAnimating} />
-              ))}
-            </div>
-            
             {/* Motion Trail */}
             <motion.div
-              className="absolute top-1/2 right-full transform -translate-y-1/2 h-1 bg-gradient-to-l from-primary/60 to-transparent rounded-full"
-              animate={isAnimating ? { width: [0, 40, 60, 40, 0], opacity: [0, 0.8, 0.6, 0.4, 0] } : { width: 0, opacity: 0 }}
+              className="absolute top-1/2 right-full transform -translate-y-1/2 h-0.5 bg-gradient-to-l from-primary to-transparent rounded-full"
+              animate={isAnimating ? { width: [0, 60, 80, 60, 0], opacity: [0, 1, 0.8, 0.5, 0] } : { width: 0, opacity: 0 }}
               transition={{ duration: 0.8, ease: 'easeOut' }}
             />
             
-            {/* Locomotive Body */}
+            {/* Main Indicator - Clean Professional Design */}
             <motion.div
               className="relative"
-              animate={isAnimating ? { 
-                x: [0, 2, -1, 1, 0],
-                y: [0, -1, 0, -1, 0],
-              } : {}}
-              transition={{ duration: 0.15, repeat: isAnimating ? 5 : 0 }}
+              animate={isAnimating ? { x: [0, 3, -2, 1, 0] } : {}}
+              transition={{ duration: 0.6, ease: 'easeInOut' }}
             >
-              {/* Chimney/Smokestack */}
+              {/* Outer Ring with Glow */}
               <motion.div
-                className="absolute -top-3 left-1/2 transform -translate-x-1/2 w-3 h-4 bg-gradient-to-t from-primary to-primary/80 rounded-t-full"
-                animate={isAnimating ? { scaleY: [1, 1.1, 1] } : {}}
-                transition={{ duration: 0.3, repeat: isAnimating ? Infinity : 0 }}
-              />
-              
-              {/* Main Body */}
-              <div className="w-14 h-10 sm:w-16 sm:h-12 bg-gradient-to-b from-primary via-primary to-primary/90 rounded-lg flex items-center justify-center shadow-xl shadow-primary/40 relative overflow-hidden">
-                {/* Shine effect */}
-                <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-transparent" />
-                
-                {/* Window */}
-                <div className="w-6 h-5 sm:w-7 sm:h-6 bg-primary-foreground/90 rounded-sm flex items-center justify-center">
-                  <GraduationCap className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
-                </div>
-                
-                {/* Decorative stripes */}
-                <div className="absolute bottom-1 left-1 right-1 h-1 bg-primary-foreground/30 rounded-full" />
-              </div>
-              
-              {/* Cow catcher (front) */}
-              <div className="absolute -right-1 top-1/2 transform -translate-y-1/2 w-2 h-6 bg-gradient-to-r from-primary to-primary/70 rounded-r-sm" />
-              
-              {/* Wheels */}
-              <Wheel size={14} position="left" isMoving={isAnimating} />
-              <Wheel size={14} position="right" isMoving={isAnimating} />
-              
-              {/* Piston rod animation */}
-              <motion.div
-                className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-8 h-0.5 bg-foreground/60 rounded-full"
-                animate={isAnimating ? { scaleX: [1, 0.8, 1.1, 0.9, 1], x: [-4, 0, 4, 0, -4] } : {}}
-                transition={{ duration: 0.4, repeat: isAnimating ? Infinity : 0, ease: 'linear' }}
-              />
-            </motion.div>
-            
-            {/* Glow effect when stationary */}
-            {!isAnimating && (
-              <motion.div
-                className="absolute inset-0 rounded-lg bg-primary/20 blur-xl -z-10"
-                animate={{ opacity: [0.5, 0.8, 0.5], scale: [1, 1.1, 1] }}
+                className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gradient-to-br from-primary via-primary to-primary/80 flex items-center justify-center shadow-2xl relative"
+                animate={!isAnimating ? { boxShadow: ['0 0 20px rgba(10,102,194,0.4)', '0 0 40px rgba(10,102,194,0.6)', '0 0 20px rgba(10,102,194,0.4)'] } : {}}
                 transition={{ duration: 2, repeat: Infinity }}
-              />
-            )}
+              >
+                {/* Inner Glass Effect */}
+                <div className="absolute inset-1 rounded-full bg-gradient-to-br from-white/30 to-transparent" />
+                
+                {/* Arrow Icon */}
+                <motion.div
+                  animate={isAnimating ? { x: [0, 4, 0] } : {}}
+                  transition={{ duration: 0.4, repeat: isAnimating ? 2 : 0 }}
+                >
+                  <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+                </motion.div>
+              </motion.div>
+              
+              {/* Ripple Effect when Stationary */}
+              {!isAnimating && (
+                <>
+                  <motion.div
+                    className="absolute inset-0 rounded-full border-2 border-primary/40"
+                    animate={{ scale: [1, 1.5, 2], opacity: [0.6, 0.3, 0] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                  />
+                  <motion.div
+                    className="absolute inset-0 rounded-full border-2 border-primary/30"
+                    animate={{ scale: [1, 1.5, 2], opacity: [0.4, 0.2, 0] }}
+                    transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
+                  />
+                </>
+              )}
+            </motion.div>
           </motion.div>
         </div>
 
