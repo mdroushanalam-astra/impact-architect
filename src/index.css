@@ -2,86 +2,86 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Futuristic Dark Theme with Gradient Accents */
+/* LinkedIn-inspired Professional Theme */
 @layer base {
   :root {
-    --background: 222 47% 6%;
-    --foreground: 210 40% 98%;
+    --background: 210 20% 98%;
+    --foreground: 0 0% 9%;
 
-    --card: 222 47% 8%;
-    --card-foreground: 210 40% 98%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 9%;
 
-    --popover: 222 47% 8%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 9%;
 
-    --primary: 262 83% 58%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 207 90% 40%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 199 89% 48%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 207 90% 54%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 217 32% 17%;
-    --muted-foreground: 215 20% 65%;
+    --muted: 210 20% 96%;
+    --muted-foreground: 215 16% 47%;
 
-    --accent: 330 81% 60%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 207 90% 40%;
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 62% 30%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 217 32% 20%;
-    --input: 217 32% 17%;
-    --ring: 262 83% 58%;
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 207 90% 40%;
 
     --radius: 0.75rem;
 
-    /* Custom gradient colors */
-    --gradient-start: 262 83% 58%;
-    --gradient-mid: 199 89% 48%;
-    --gradient-end: 330 81% 60%;
+    /* LinkedIn gradient colors */
+    --gradient-start: 207 90% 40%;
+    --gradient-mid: 207 90% 54%;
+    --gradient-end: 207 85% 65%;
 
-    /* Glass effect */
-    --glass-bg: 222 47% 8% / 0.6;
-    --glass-border: 217 32% 30% / 0.5;
+    /* Glass effect for light theme */
+    --glass-bg: 0 0% 100% / 0.9;
+    --glass-border: 214 32% 91% / 0.8;
 
-    --sidebar-background: 222 47% 6%;
-    --sidebar-foreground: 210 40% 98%;
-    --sidebar-primary: 262 83% 58%;
-    --sidebar-primary-foreground: 210 40% 98%;
-    --sidebar-accent: 217 32% 17%;
-    --sidebar-accent-foreground: 210 40% 98%;
-    --sidebar-border: 217 32% 20%;
-    --sidebar-ring: 262 83% 58%;
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 0 0% 9%;
+    --sidebar-primary: 207 90% 40%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 210 20% 96%;
+    --sidebar-accent-foreground: 0 0% 9%;
+    --sidebar-border: 214 32% 91%;
+    --sidebar-ring: 207 90% 40%;
   }
 
   .dark {
-    --background: 222 47% 6%;
+    --background: 210 30% 8%;
     --foreground: 210 40% 98%;
-    --card: 222 47% 8%;
+    --card: 210 30% 12%;
     --card-foreground: 210 40% 98%;
-    --popover: 222 47% 8%;
+    --popover: 210 30% 12%;
     --popover-foreground: 210 40% 98%;
-    --primary: 262 83% 58%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 199 89% 48%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217 32% 17%;
+    --primary: 207 90% 54%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 207 90% 40%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 210 30% 18%;
     --muted-foreground: 215 20% 65%;
-    --accent: 330 81% 60%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62% 30%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217 32% 20%;
-    --input: 217 32% 17%;
-    --ring: 262 83% 58%;
-    --sidebar-background: 222 47% 6%;
+    --accent: 207 90% 54%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 62% 50%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 210 30% 22%;
+    --input: 210 30% 18%;
+    --ring: 207 90% 54%;
+    --sidebar-background: 210 30% 8%;
     --sidebar-foreground: 210 40% 98%;
-    --sidebar-primary: 262 83% 58%;
-    --sidebar-primary-foreground: 210 40% 98%;
-    --sidebar-accent: 217 32% 17%;
+    --sidebar-primary: 207 90% 54%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 210 30% 18%;
     --sidebar-accent-foreground: 210 40% 98%;
-    --sidebar-border: 217 32% 20%;
-    --sidebar-ring: 262 83% 58%;
+    --sidebar-border: 210 30% 22%;
+    --sidebar-ring: 207 90% 54%;
   }
 }
 
@@ -96,21 +96,24 @@
 
   body {
     @apply bg-background text-foreground antialiased;
-    background-image: 
-      radial-gradient(ellipse at 20% 20%, hsl(262 83% 58% / 0.1) 0%, transparent 50%),
-      radial-gradient(ellipse at 80% 80%, hsl(199 89% 48% / 0.1) 0%, transparent 50%),
-      radial-gradient(ellipse at 50% 50%, hsl(330 81% 60% / 0.05) 0%, transparent 70%);
-    background-attachment: fixed;
   }
 }
 
 @layer components {
   .glass-card {
-    @apply bg-card/60 backdrop-blur-xl border border-border/50 rounded-xl;
+    @apply bg-card/90 backdrop-blur-xl border border-border/50 rounded-xl shadow-lg;
   }
 
   .gradient-text {
-    @apply bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text text-transparent;
+  }
+
+  .gradient-bg {
+    background: linear-gradient(135deg, hsl(207 90% 40%) 0%, hsl(207 90% 54%) 50%, hsl(207 85% 65%) 100%);
+  }
+
+  .gradient-bg-hero {
+    background: linear-gradient(135deg, hsl(207 90% 35%) 0%, hsl(207 90% 45%) 50%, hsl(207 85% 55%) 100%);
   }
 
   .gradient-border {
@@ -120,7 +123,7 @@
   .gradient-border::before {
     content: '';
     @apply absolute inset-0 rounded-xl p-[1px];
-    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary)), hsl(var(--accent)));
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary)));
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
@@ -128,15 +131,15 @@
   }
 
   .glow-primary {
-    box-shadow: 0 0 40px hsl(262 83% 58% / 0.3), 0 0 80px hsl(262 83% 58% / 0.1);
+    box-shadow: 0 0 30px hsl(207 90% 40% / 0.4), 0 0 60px hsl(207 90% 40% / 0.2);
   }
 
   .glow-secondary {
-    box-shadow: 0 0 40px hsl(199 89% 48% / 0.3), 0 0 80px hsl(199 89% 48% / 0.1);
+    box-shadow: 0 0 30px hsl(207 90% 54% / 0.4), 0 0 60px hsl(207 90% 54% / 0.2);
   }
 
   .glow-accent {
-    box-shadow: 0 0 40px hsl(330 81% 60% / 0.3), 0 0 80px hsl(330 81% 60% / 0.1);
+    box-shadow: 0 0 30px hsl(207 85% 65% / 0.4), 0 0 60px hsl(207 85% 65% / 0.2);
   }
 
   .hover-lift {
@@ -145,19 +148,19 @@
 
   .hover-lift:hover {
     @apply -translate-y-2;
-    box-shadow: 0 20px 40px hsl(262 83% 58% / 0.2);
+    box-shadow: 0 20px 40px hsl(207 90% 40% / 0.15);
   }
 
   .text-glow {
-    text-shadow: 0 0 20px hsl(262 83% 58% / 0.5), 0 0 40px hsl(262 83% 58% / 0.3);
+    text-shadow: 0 0 20px hsl(207 90% 54% / 0.5), 0 0 40px hsl(207 90% 54% / 0.3);
   }
 
   .animated-gradient-bg {
     background: linear-gradient(-45deg, 
-      hsl(262 83% 58% / 0.2), 
-      hsl(199 89% 48% / 0.2), 
-      hsl(330 81% 60% / 0.2), 
-      hsl(262 83% 58% / 0.2)
+      hsl(207 90% 40% / 0.1), 
+      hsl(207 90% 54% / 0.1), 
+      hsl(207 85% 65% / 0.1), 
+      hsl(207 90% 40% / 0.1)
     );
     background-size: 400% 400%;
     animation: gradientShift 15s ease infinite;
@@ -183,8 +186,8 @@
   }
 
   @keyframes pulseGlow {
-    0%, 100% { box-shadow: 0 0 20px hsl(262 83% 58% / 0.3); }
-    50% { box-shadow: 0 0 40px hsl(262 83% 58% / 0.6), 0 0 60px hsl(262 83% 58% / 0.3); }
+    0%, 100% { box-shadow: 0 0 20px hsl(207 90% 54% / 0.3); }
+    50% { box-shadow: 0 0 40px hsl(207 90% 54% / 0.6), 0 0 60px hsl(207 90% 54% / 0.3); }
   }
 
   .scroll-indicator {
@@ -210,5 +213,23 @@
     25% { transform: translateY(-30px) translateX(20px); opacity: 0.8; }
     50% { transform: translateY(-60px) translateX(-10px); opacity: 0.5; }
     75% { transform: translateY(-30px) translateX(30px); opacity: 0.8; }
+  }
+
+  /* LinkedIn-style button */
+  .btn-linkedin {
+    @apply bg-primary text-primary-foreground font-semibold px-6 py-3 rounded-full transition-all duration-300;
+  }
+
+  .btn-linkedin:hover {
+    @apply bg-secondary;
+    box-shadow: 0 4px 20px hsl(207 90% 40% / 0.3);
+  }
+
+  .btn-outline-linkedin {
+    @apply border-2 border-primary text-primary font-semibold px-6 py-3 rounded-full transition-all duration-300 bg-transparent;
+  }
+
+  .btn-outline-linkedin:hover {
+    @apply bg-primary text-primary-foreground;
   }
 }
