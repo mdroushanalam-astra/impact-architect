@@ -13,7 +13,7 @@ const stats = [
   { number: '∞', label: 'Vision', icon: Target },
 ];
 
-const photos = [photo1, photo2, photo3, photo4];
+const photos = [photo1];
 
 export const About = () => {
   const [ref, isInView] = useInView<HTMLElement>({ threshold: 0.1 });
@@ -80,40 +80,31 @@ export const About = () => {
             </div>
           </motion.div>
 
-          {/* Photo Grid */}
+          {/* Single Photo */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative"
+            className="relative flex justify-center"
           >
-            <div className="grid grid-cols-2 gap-4">
-              {photos.map((photo, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                  transition={{ delay: 0.4 + index * 0.15 }}
-                  whileHover={{ scale: 1.05, zIndex: 10 }}
-                  className={`relative rounded-xl overflow-hidden ${
-                    index === 0 ? 'aspect-square' : 
-                    index === 1 ? 'aspect-[4/5]' :
-                    index === 2 ? 'aspect-[4/5]' : 'aspect-square'
-                  }`}
-                >
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent z-10" />
-                  <img
-                    src={photo}
-                    alt={`Ariba's journey ${index + 1}`}
-                    className="w-full h-full object-cover"
-                  />
-                </motion.div>
-              ))}
-            </div>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={isInView ? { opacity: 1, scale: 1 } : {}}
+              transition={{ delay: 0.4 }}
+              whileHover={{ scale: 1.02 }}
+              className="relative rounded-2xl overflow-hidden aspect-[3/4] max-w-md w-full shadow-2xl"
+            >
+              <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent z-10" />
+              <img
+                src={photos[0]}
+                alt="Ariba Irfan"
+                className="w-full h-full object-cover"
+              />
+            </motion.div>
             
             {/* Decorative Elements */}
-            <div className="absolute -top-4 -right-4 w-20 h-20 border-2 border-primary/30 rounded-xl -z-10" />
-            <div className="absolute -bottom-4 -left-4 w-20 h-20 border-2 border-secondary/30 rounded-xl -z-10" />
+            <div className="absolute -top-4 -right-4 w-24 h-24 border-2 border-primary/20 rounded-2xl -z-10" />
+            <div className="absolute -bottom-4 -left-4 w-24 h-24 border-2 border-primary/20 rounded-2xl -z-10" />
           </motion.div>
         </div>
       </div>
