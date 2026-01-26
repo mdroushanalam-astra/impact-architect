@@ -50,26 +50,26 @@ export const Hero = () => {
             transition={{ duration: 0.8 }}
             className="text-left"
           >
-            {/* Badge */}
+            {/* Main Heading */}
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold mb-4 text-white"
+            >
+              Ariba Irfan
+            </motion.h1>
+
+            {/* Badge - Now below the name */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-6"
             >
               <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
               <span className="text-white/90 text-sm font-medium">AI Visionary & Serial Entrepreneur</span>
             </motion.div>
-
-            {/* Main Heading */}
-            <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold mb-4 text-white"
-            >
-              Ariba Irfan
-            </motion.h1>
 
             {/* Subheading */}
             <motion.h2
@@ -99,12 +99,14 @@ export const Hero = () => {
               className="flex flex-col sm:flex-row gap-4 mb-10"
             >
               <Button
-                onClick={scrollToContact}
+                asChild
                 size="lg"
                 className="bg-white text-primary hover:bg-white/90 font-semibold px-8 py-6 text-lg rounded-full shadow-xl group"
               >
-                Get in Touch
-                <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
+                <a href="https://calendly.com/contact-aribairfan0801" target="_blank" rel="noopener noreferrer">
+                  Book a Meeting
+                  <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
+                </a>
               </Button>
               <Button
                 onClick={scrollToVentures}

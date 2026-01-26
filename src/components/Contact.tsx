@@ -168,7 +168,7 @@ export const Contact = () => {
                   asChild
                   className="w-full bg-gradient-to-r from-primary to-secondary hover:opacity-90"
                 >
-                  <a href="mailto:contact@aribairfan.co.in?subject=Meeting%20Request">
+                  <a href="https://calendly.com/contact-aribairfan0801" target="_blank" rel="noopener noreferrer">
                     Schedule a Call
                     <ExternalLink className="w-4 h-4 ml-2" />
                   </a>
