@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ChevronDown, Linkedin, Twitter, Instagram } from 'lucide-react';
+import { ChevronDown, Linkedin, Twitter, Instagram, Github, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import aribaImage from '@/assets/ariba.jpg';
 
@@ -7,11 +7,19 @@ const socialLinks = [
   { icon: Linkedin, href: 'https://www.linkedin.com/in/ariba-irfan-483254374', label: 'LinkedIn' },
   { icon: Twitter, href: 'https://x.com/connect_aarzoo', label: 'Twitter' },
   { icon: Instagram, href: 'https://instagram.com/travel_style._diaries', label: 'Instagram' },
+  { icon: Github, href: 'https://github.com/aribairfan-indoverseai', label: 'GitHub' },
 ];
 
 export const Hero = () => {
   const scrollToContact = () => {
     const element = document.querySelector('#contact');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const scrollToVentures = () => {
+    const element = document.querySelector('#ventures');
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
@@ -25,117 +33,136 @@ export const Hero = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Animated Background */}
-      <div className="absolute inset-0 animated-gradient-bg" />
-      
-      {/* Floating Particles */}
+    <section className="relative min-h-screen flex items-center overflow-hidden gradient-bg-hero">
+      {/* Subtle animated background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(20)].map((_, i) => (
-          <div
-            key={i}
-            className="particle"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 10}s`,
-              animationDuration: `${10 + Math.random() * 10}s`,
-            }}
-          />
-        ))}
+        <div className="absolute top-1/4 -left-20 w-72 h-72 bg-white/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-white/5 rounded-full blur-3xl" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-white/3 rounded-full blur-3xl" />
       </div>
 
-      {/* Gradient Orbs */}
-      <div className="absolute top-1/4 -left-32 w-96 h-96 bg-primary/20 rounded-full blur-3xl" />
-      <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-secondary/20 rounded-full blur-3xl" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent/10 rounded-full blur-3xl" />
-
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="flex flex-col items-center text-center">
-          {/* Profile Image */}
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          {/* Left Content */}
           <motion.div
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.8, ease: 'easeOut' }}
-            className="relative mb-8"
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-left"
           >
-            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary via-secondary to-accent blur-xl opacity-60 scale-110 pulse-glow" />
-            <div className="relative w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 rounded-full overflow-hidden border-4 border-primary/50">
-              <img
-                src={aribaImage}
-                alt="Ariba Irfan"
-                className="w-full h-full object-cover"
-              />
-            </div>
-          </motion.div>
-
-          {/* Main Heading */}
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold mb-6"
-          >
-            <span className="text-foreground">Building the </span>
-            <span className="gradient-text text-glow">Future</span>
-            <br />
-            <span className="text-foreground">of AI-Powered Solutions</span>
-          </motion.h1>
-
-          {/* Subtitle */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            className="text-lg sm:text-xl md:text-2xl text-muted-foreground mb-8 max-w-2xl"
-          >
-            Founder of 3 Startups | AI Entrepreneur | Changemaker
-          </motion.p>
-
-          {/* CTA Buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.7 }}
-            className="flex flex-col sm:flex-row gap-4 mb-12"
-          >
-            <Button
-              onClick={scrollToContact}
-              size="lg"
-              className="bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-primary-foreground font-semibold px-8 py-6 text-lg glow-primary"
+            {/* Badge */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-6"
             >
-              Let's Collaborate
-            </Button>
-            <Button
-              onClick={scrollToAbout}
-              variant="outline"
-              size="lg"
-              className="border-primary/50 hover:bg-primary/10 text-foreground font-semibold px-8 py-6 text-lg"
-            >
-              Explore My Journey
-            </Button>
-          </motion.div>
+              <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+              <span className="text-white/90 text-sm font-medium">AI Visionary & Serial Entrepreneur</span>
+            </motion.div>
 
-          {/* Social Links */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.9 }}
-            className="flex gap-6"
-          >
-            {socialLinks.map((social) => (
-              <motion.a
-                key={social.label}
-                href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-3 rounded-full glass-card hover:bg-primary/20 transition-all duration-300"
-                whileHover={{ scale: 1.1, y: -2 }}
-                whileTap={{ scale: 0.95 }}
+            {/* Main Heading */}
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold mb-4 text-white"
+            >
+              Ariba Irfan
+            </motion.h1>
+
+            {/* Subheading */}
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="text-xl sm:text-2xl md:text-3xl font-display font-semibold mb-6 text-white/90"
+            >
+              Transforming Industries Through AI Innovation
+            </motion.h2>
+
+            {/* Description */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+              className="text-lg text-white/80 mb-8 max-w-xl leading-relaxed"
+            >
+              Building three revolutionary startups to democratize education, empower India's workforce, and transform business with AI
+            </motion.p>
+
+            {/* CTA Buttons */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              className="flex flex-col sm:flex-row gap-4 mb-10"
+            >
+              <Button
+                onClick={scrollToContact}
+                size="lg"
+                className="bg-white text-primary hover:bg-white/90 font-semibold px-8 py-6 text-lg rounded-full shadow-xl group"
               >
-                <social.icon className="w-5 h-5 sm:w-6 sm:h-6 text-foreground" />
-              </motion.a>
-            ))}
+                Get in Touch
+                <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
+              </Button>
+              <Button
+                onClick={scrollToVentures}
+                variant="outline"
+                size="lg"
+                className="border-2 border-white/50 hover:bg-white/10 text-white font-semibold px-8 py-6 text-lg rounded-full"
+              >
+                Explore Startups
+              </Button>
+            </motion.div>
+
+            {/* Social Links */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.7 }}
+              className="flex items-center gap-4"
+            >
+              <span className="text-white/70 text-sm font-medium">Connect:</span>
+              <div className="flex gap-3">
+                {socialLinks.map((social) => (
+                  <motion.a
+                    key={social.label}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center hover:bg-white/20 transition-all duration-300"
+                    whileHover={{ scale: 1.1, y: -2 }}
+                    whileTap={{ scale: 0.95 }}
+                    aria-label={social.label}
+                  >
+                    <social.icon className="w-5 h-5 text-white" />
+                  </motion.a>
+                ))}
+              </div>
+            </motion.div>
+          </motion.div>
+
+          {/* Right - Profile Image */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="flex justify-center lg:justify-end"
+          >
+            <div className="relative">
+              {/* Glow effect behind image */}
+              <div className="absolute inset-0 rounded-3xl bg-white/20 blur-2xl scale-105" />
+              
+              {/* Main image container */}
+              <div className="relative w-72 h-80 sm:w-80 sm:h-96 md:w-96 md:h-[450px] rounded-3xl overflow-hidden border-4 border-white/30 shadow-2xl">
+                <img
+                  src={aribaImage}
+                  alt="Ariba Irfan - AI Entrepreneur"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
           </motion.div>
         </div>
       </div>
@@ -146,7 +173,8 @@ export const Hero = () => {
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2 }}
         onClick={scrollToAbout}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-muted-foreground hover:text-foreground transition-colors scroll-indicator"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/70 hover:text-white transition-colors scroll-indicator"
+        aria-label="Scroll down"
       >
         <ChevronDown className="w-8 h-8" />
       </motion.button>

@@ -5,10 +5,8 @@ import { Button } from '@/components/ui/button';
 
 const navLinks = [
   { href: '#about', label: 'About' },
-  { href: '#ventures', label: 'Ventures' },
-  { href: '#journey', label: 'Journey' },
+  { href: '#ventures', label: 'Startups' },
   { href: '#blog', label: 'Blog' },
-  { href: '#gallery', label: 'Gallery' },
   { href: '#contact', label: 'Contact' },
 ];
 
@@ -40,7 +38,7 @@ export const Navigation = () => {
         transition={{ duration: 0.6, ease: 'easeOut' }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled
-            ? 'bg-background/80 backdrop-blur-xl border-b border-border/50'
+            ? 'bg-card/95 backdrop-blur-xl shadow-lg border-b border-border'
             : 'bg-transparent'
         }`}
       >
@@ -49,11 +47,16 @@ export const Navigation = () => {
             {/* Logo */}
             <motion.a
               href="#"
-              className="text-xl sm:text-2xl font-display font-bold gradient-text"
-              whileHover={{ scale: 1.05 }}
+              className="flex items-center gap-3"
+              whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.95 }}
             >
-              Ariba Irfan
+              <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center">
+                <span className="text-primary-foreground font-bold text-lg">AI</span>
+              </div>
+              <span className={`font-display font-bold text-xl ${isScrolled ? 'text-foreground' : 'text-white'}`}>
+                Ariba Irfan
+              </span>
             </motion.a>
 
             {/* Desktop Navigation */}
@@ -62,11 +65,15 @@ export const Navigation = () => {
                 <motion.button
                   key={link.href}
                   onClick={() => scrollToSection(link.href)}
-                  className="text-muted-foreground hover:text-foreground transition-colors relative group"
+                  className={`font-medium transition-colors relative group ${
+                    isScrolled 
+                      ? 'text-muted-foreground hover:text-foreground' 
+                      : 'text-white/80 hover:text-white'
+                  }`}
                   whileHover={{ y: -2 }}
                 >
                   {link.label}
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-secondary group-hover:w-full transition-all duration-300" />
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300" />
                 </motion.button>
               ))}
             </div>
@@ -75,17 +82,18 @@ export const Navigation = () => {
             <div className="hidden sm:block">
               <Button
                 onClick={() => scrollToSection('#contact')}
-                className="bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-primary-foreground font-semibold px-6"
+                className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-6 rounded-full"
               >
-                Let's Collaborate
+                Get in Touch
               </Button>
             </div>
 
             {/* Mobile Menu Toggle */}
             <motion.button
-              className="lg:hidden p-2 text-foreground"
+              className={`lg:hidden p-2 ${isScrolled ? 'text-foreground' : 'text-white'}`}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               whileTap={{ scale: 0.9 }}
+              aria-label="Toggle menu"
             >
               {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </motion.button>
@@ -104,7 +112,7 @@ export const Navigation = () => {
             className="fixed inset-0 z-40 lg:hidden"
           >
             <div
-              className="absolute inset-0 bg-background/95 backdrop-blur-xl"
+              className="absolute inset-0 bg-card/98 backdrop-blur-xl"
               onClick={() => setIsMobileMenuOpen(false)}
             />
             <motion.div
@@ -132,9 +140,9 @@ export const Navigation = () => {
               >
                 <Button
                   onClick={() => scrollToSection('#contact')}
-                  className="bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-primary-foreground font-semibold px-8 py-6 text-lg"
+                  className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-8 py-6 text-lg rounded-full"
                 >
-                  Let's Collaborate
+                  Get in Touch
                 </Button>
               </motion.div>
             </motion.div>
