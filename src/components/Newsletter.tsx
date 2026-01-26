@@ -5,6 +5,7 @@ import { Mail, Sparkles, Check, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
+import { supabase } from '@/integrations/supabase/client';
 
 export const Newsletter = () => {
   const [ref, isInView] = useInView<HTMLElement>({ threshold: 0.2 });
@@ -27,17 +28,38 @@ export const Newsletter = () => {
 
     setIsLoading(true);
     
-    // Simulate API call - will be replaced with actual backend
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    setIsLoading(false);
-    setIsSubscribed(true);
-    setEmail('');
-    
-    toast({
-      title: "Welcome aboard! 🎉",
-      description: "You've successfully subscribed to my newsletter.",
-    });
+    try {
+      const { error } = await supabase
+        .from('newsletter_subscribers')
+        .insert({ email: email.trim().toLowerCase() });
+
+      if (error) {
+        if (error.code === '23505') {
+          toast({
+            title: "Already subscribed",
+            description: "This email is already on our list!",
+          });
+        } else {
+          throw error;
+        }
+      } else {
+        setIsSubscribed(true);
+        toast({
+          title: "Welcome aboard! 🎉",
+          description: "You've successfully subscribed to my newsletter.",
+        });
+      }
+    } catch (error) {
+      console.error('Newsletter subscription error:', error);
+      toast({
+        title: "Something went wrong",
+        description: "Please try again later.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+      setEmail('');
+    }
   };
 
   return (
