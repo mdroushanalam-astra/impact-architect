@@ -1,4 +1,4 @@
-# Impact Architect — Executive Platform with Embedded Conversational AI 🌟
+# Impact Architect:  Executive Platform with Embedded Conversational AI 🌟
 
 <div align="center">
 
